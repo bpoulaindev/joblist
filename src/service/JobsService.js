@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import axios from 'axios';
+
 const firebaseConfig = {
   apiKey: "AIzaSyB5Nigu5hzO187RL883aBBZdLLq-yWfY8I",
   authDomain: "joblist-bpoulain.firebaseapp.com",
@@ -11,12 +11,19 @@ const firebaseConfig = {
   measurementId: "G-05PJCVCT68"
 };
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const jobsRef = db.collection('jobs');
 export default class TicketsService {
 
-    getJson() {
-        // return axios.get('data.json')
-        // .then(res => res.data.data
-        //     .sort((a, b) => a.created_at < b.created_at ? 1 : -1)
-        // );
+    async getAllJobs() {
+      const snapshot = await jobsRef.get();
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }  
+      snapshot.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+      });
+      return snapshot
     }
 }
