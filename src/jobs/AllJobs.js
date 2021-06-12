@@ -1,7 +1,8 @@
 import React, { Component, useState, useEffect } from "react";
 import JobsService from '../service/JobsService';
+import { Link } from "react-router-dom";
 
-export default function WeshAlors() {
+export default function AllJobs() {
   const [jobs, setJobs] = useState([])
   useEffect(() => {
     async function test() {
@@ -28,9 +29,15 @@ export default function WeshAlors() {
               </div>
               <small>Publié le : {new Date(el.obj.publishDate).toLocaleDateString("en-US")}</small>
               <small>Type de contrat : {el.obj.details.contract}</small>
-              <div className="row mt-2">
+              <div className="row my-2">
                 <div className=" col-lg-6 mx-auto">
-                <button className="btn btn-primary">Voir l'offre</button>
+                <button className="btn btn-primary">
+                  <Link to="/job/{id}" 
+                  style={{ textDecoration: 'none' }}
+                  className="text-white">
+                    Voir l'offre
+                  </Link>
+                </button>
               </div>
               </div>
             </div>

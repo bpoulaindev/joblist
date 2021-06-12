@@ -20,10 +20,15 @@ export default class TicketsService {
       if (snapshot.empty) {
         console.log('No matching documents.');
         return;
-      }  
-      snapshot.forEach(doc => {
-        console.log(doc.id, '=>', doc.data());
-      });
+      }
+      return snapshot
+    };
+    async getOneJob(jobId) {
+      const snapshot = await jobsRef.where('id', '==', jobId).get();
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+      }
       return snapshot
     }
 }
