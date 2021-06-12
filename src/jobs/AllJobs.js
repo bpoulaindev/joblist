@@ -1,51 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import JobsService from '../service/JobsService';
 
-
-// export class AllJobs extends Component {
-    
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             jobs: []
-//         };
-//         this.jobService = new JobsService();
-//         this.itemTemplate = this.itemTemplate.bind(this);
-//     }
-
-//     async componentDidMount() {
-//       const data = await this.jobService.getAllJobs()
-//       this.setState({ jobs: data })
-//       console.log(this.state.jobs)
-//       this.state.jobs.forEach(doc => {
-//         console.log(doc.id, '=>', doc.data());
-//       });
-//     }
-
-//     itemTemplate(data) {
-//         return (
-//             <div className="ticket-item">
-//                 <h1>wesh</h1>
-//             </div>
-//         );
-//     }
-
-//     render() {
-//         return (
-//             <div className="row">
-//               <ul>
-//                 {this.state.jobs.forEach(el => (
-//                   <li>
-//                     {console.log(el)}
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//         );
-//     }
-// }
-
 export default function WeshAlors() {
   const [jobs, setJobs] = useState([])
   useEffect(() => {
@@ -61,10 +16,24 @@ export default function WeshAlors() {
   },[])
 
   return (
-    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 mt-2">
         {jobs.map(([el, id]) => (
-          <div key={id} className="card">
-            <p>{el.obj.description}</p>
+          <div className="col" key={id}>
+            <div className="card h-100">
+            <object data={el.obj.helmetImageLink} type="image/png" className="card-img-top">
+              <img src="/pc.jpg" className="card-img-top" alt="Pas de truc à charger"/>
+            </object>
+              <div className="card-body">
+                <h5 className="card-title">{el.obj.title}</h5>
+              </div>
+              <small>Publié le : {new Date(el.obj.publishDate).toLocaleDateString("en-US")}</small>
+              <small>Type de contrat : {el.obj.details.contract}</small>
+              <div className="row mt-2">
+                <div className=" col-lg-6 mx-auto">
+                <button className="btn btn-primary">Voir l'offre</button>
+              </div>
+              </div>
+            </div>
           </div>
         ))}
     </div>
