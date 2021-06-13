@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import JobsService from '../service/JobsService';
 import { Link } from "react-router-dom";
 
@@ -20,14 +20,14 @@ export default function AllJobs() {
         {jobs.map(([el, id]) => (
           <div className="col" key={id}>
             <div className="card h-100">
-            <object data={el.obj.helmetImageLink} type="image/png" className="card-img-top">
+            <object data={el.helmetImageLink} type="image/png" className="card-img-top">
               <img src="/pc.jpg" className="card-img-top" alt="Pas de truc à charger"/>
             </object>
               <div className="card-body">
-                <h5 className="card-title">{el.obj.title}</h5>
+                <h5 className="card-title">{el.title}</h5>
               </div>
-              <small>Publié le : {new Date(el.obj.publishDate).toLocaleDateString("en-US")}</small>
-              <small>Type de contrat : {el.obj.details.contract}</small>
+              <small>Publié le : {new Date(el.publishDate).toLocaleDateString("en-US")}</small>
+              <small>Type de contrat : {el.details.contract}</small>
               <div className="row my-2">
                 <div className=" col-lg-6 mx-auto">
                 <button className="btn btn-primary">

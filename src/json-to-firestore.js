@@ -1044,9 +1044,7 @@ var jobs =[
  ]
 
 jobs.forEach(function(obj) {
-    db.collection("jobs").add({
-        obj
-    }).then(function(docRef) {
+    db.collection("jobs").add(obj).then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
     })
     .catch(function(error) {

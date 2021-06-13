@@ -22,7 +22,7 @@ function App() {
                 <Link to='/newJob' 
                   style={{ textDecoration: 'none' }}
                   className="text-white">
-                    Ajouter <i class="fas fa-plus"></i>
+                    Ajouter <i className="fas fa-plus"></i>
                 </Link>
               </div>
             </div>

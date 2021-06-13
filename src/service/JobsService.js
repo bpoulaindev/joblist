@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import uniqid from "uniqid";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB5Nigu5hzO187RL883aBBZdLLq-yWfY8I",
@@ -30,5 +31,8 @@ export default class TicketsService {
         return;
       }
       return snapshot
+    }
+    async pushJob(job) {
+      await jobsRef.doc(uniqid()).set(job)
     }
 }
