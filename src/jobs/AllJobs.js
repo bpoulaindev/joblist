@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 export default function AllJobs() {
   const [jobs, setJobs] = useState([])
   useEffect(() => {
-    async function test() {
+    async function GetAllJobs() {
       const jobService = new JobsService();
-      console.log('wesh')
       const data = await jobService.getAllJobs()
       const data2 = []
       data.forEach(doc => {data2.push([doc.data(), doc.id])})
       setJobs(data2)
     }
-    test();
+    GetAllJobs();
   },[])
 
   return (
@@ -32,7 +31,7 @@ export default function AllJobs() {
               <div className="row my-2">
                 <div className=" col-lg-6 mx-auto">
                 <button className="btn btn-primary">
-                  <Link to="/job/{id}" 
+                  <Link to={`/job/${id}`} 
                   style={{ textDecoration: 'none' }}
                   className="text-white">
                     Voir l'offre

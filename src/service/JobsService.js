@@ -22,9 +22,9 @@ export default class TicketsService {
         return;
       }
       return snapshot
-    };
+    }
     async getOneJob(jobId) {
-      const snapshot = await jobsRef.where('id', '==', jobId).get();
+      const snapshot = await jobsRef.doc(jobId).get();
       if (snapshot.empty) {
         console.log('No matching documents.');
         return;
